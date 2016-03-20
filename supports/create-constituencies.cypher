@@ -54,8 +54,8 @@ CREATE (:Party {name: 'Independents'})
 
 CREATE (:Party {name: 'Green Party'})
 CREATE (:Party {name: 'Irish Democratic Party'}) x
-CREATE (:Party {name: 'Workers Party'})
-CREATE (:Party {name: 'Direct Democracy'})
+CREATE (:Party {name: 'Workers Party'}) x
+CREATE (:Party {name: 'Direct Democracy'}) x
 CREATE (:Party {name: 'Peoples Convention'}) x
 CREATE (:Party {name: 'Communist Party'}) x
 CREATE (:Party {name: 'Fis Nua'}) x
@@ -68,12 +68,10 @@ CREATE (:Party {name: 'Catholic Democrats'}) x
 CREATE (:Person {name: 'Michael ODonnell'}) --- CREATE a Person
 
 Match (n:Person), (p:Party)
-where n.name = 'Michael ODonnell' and p.name = 'Communist Party'
-CREATE n-[:IS_IN]->p; ----- CREATE IS_IN relationship
-
-MATCH (n:Person {name: 'Michael ODonnell'})
-OPTIONAL MATCH (c:Constituency {county: 'Cork North West'})
-CREATE n-[:RAN_IN]->c ------ CREATE RAN_IN relationship
+where n.name = 'Seamus MacDonagh' and p.name = 'Direct Democracy'
+OPTIONAL MATCH (c:Constituency {name: 'Meath East'})
+CREATE n-[:IS_IN]->p
+CREATE n-[:RAN_IN]->c ---- adds both relationships to a person
 
 MATCH (n:Person)-[:IS_IN]->(p:Party {name: 'Catholic Democrats'}) RETURN n,p
 
