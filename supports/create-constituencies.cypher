@@ -56,6 +56,25 @@ CREATE (:Party {name: 'Irish Democratic Party'})
 CREATE (:Party {name: 'Workers Party'})
 CREATE (:Party {name: 'Direct Democracy'})
 CREATE (:Party {name: 'People's Convention'})
-CREATE (:Party {name: 'Communist Party'})
+CREATE (:Party {name: 'Communist Party'}) x
 CREATE (:Party {name: 'Fis Nua'})
 CREATE (:Party {name: 'Catholic Democrats'})
+
+#######################People + IS_IN PARTY + RAN_IN##################################################
+----SAMPLE TO CREATE A PERSON AND CREATE A RELATIONSHIP OF IS_IN SOME PARTY + WHERE THEY RAN_IN
+	WILL USE THIS AS TEMPLATE FOR THE REST OF CANDIDATES---------------
+
+CREATE (:Person {name: 'Michael ODonnell'})
+
+Match (n:Person), (p:Party)
+where n.name = 'Michael ODonnell' and p.name = 'Communist Party'
+CREATE n-[:IS_IN]->p;
+
+MATCH (n:Person {name: 'Michael ODonnell'})
+OPTIONAL MATCH (c:Constituency {county: 'Cork North West'})
+CREATE n-[:RAN_IN]->c
+
+MATCH (n:Person {name: 'Michael ODonnell'})
+OPTIONAL MATCH (p:Party {name: 'Communist Party'})
+OPTIONAL MATCH (c:Constituency {county: 'Cork North West'})
+RETURN n,p,c
