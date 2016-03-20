@@ -1,5 +1,5 @@
 # Irish Constituencies Neo4j Database
-###### Ed Lasauskas, G00311516@gmit.ie
+###### Ed Lasauskas, G00311516
 
 ## Introduction
 This is a project for Graph Theory module based on Irish Constituencies done in Neo4J.
