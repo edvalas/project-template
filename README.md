@@ -1,8 +1,8 @@
 # Irish Constituencies Neo4j Database
-###### Student name, G00123456
+###### Ed Lasauskas, G00311516@gmit.ie
 
 ## Introduction
-Give a summary here of what your project is about.
+This is a project for Graph Theory module based on Irish Constituencies done in Neo4J.
 
 ## Database
 Explain how you created your database, and how information is represented in it.
