@@ -1,6 +1,4 @@
-// This query creates nodes representing all constituencies in Ireland.
-
-
+#########################Constituencies##############################################
 CREATE (:Constituency {county:'Carlow Kilkenny', population:'145,659', seats:'5'})
 CREATE (:Constituency {county:'Cavan Monaghan', population:'120,483', seats:'4'})
 CREATE (:Constituency {county:'Clare', population:'111,336', seats:'4'})
@@ -41,3 +39,23 @@ CREATE (:Constituency {county:'Tipperary', population:'147,801', seats:'5'})
 CREATE (:Constituency {county:'Waterford', population:'113,795', seats:'4'})
 CREATE (:Constituency {county:'Wexford', population:'145,320', seats:'5'})
 CREATE (:Constituency {county:'Wicklow', population:'141,012', seats:'5'})
+
+##################################Parties########################################
+
+CREATE (:Party {name: 'Fine Gael'})
+CREATE (:Party {name: 'Labour'})
+CREATE (:Party {name: 'Fianna Fail'})
+CREATE (:Party {name: 'Sinn Fein'})
+CREATE (:Party {name: 'Anti Austerity'})
+CREATE (:Party {name: 'Renua Ireland'})
+CREATE (:Party {name: 'Social Democrats'})
+CREATE (:Party {name: 'WUAG'})
+CREATE (:Party {name: 'Independents'})
+CREATE (:Party {name: 'Green Party'})
+CREATE (:Party {name: 'Irish Democratic Party'})
+CREATE (:Party {name: 'Workers Party'})
+CREATE (:Party {name: 'Direct Democracy'})
+CREATE (:Party {name: 'People's Convention'})
+CREATE (:Party {name: 'Communist Party'})
+CREATE (:Party {name: 'Fis Nua'})
+CREATE (:Party {name: 'Catholic Democrats'})
