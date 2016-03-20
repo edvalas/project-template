@@ -49,32 +49,42 @@ CREATE (:Party {name: 'Sinn Fein'})
 CREATE (:Party {name: 'Anti Austerity'})
 CREATE (:Party {name: 'Renua Ireland'})
 CREATE (:Party {name: 'Social Democrats'})
-CREATE (:Party {name: 'WUAG'})
+CREATE (:Party {name: 'WUAG'}) x
 CREATE (:Party {name: 'Independents'})
+
 CREATE (:Party {name: 'Green Party'})
-CREATE (:Party {name: 'Irish Democratic Party'})
+CREATE (:Party {name: 'Irish Democratic Party'}) x
 CREATE (:Party {name: 'Workers Party'})
 CREATE (:Party {name: 'Direct Democracy'})
-CREATE (:Party {name: 'People's Convention'})
+CREATE (:Party {name: 'Peoples Convention'}) x
 CREATE (:Party {name: 'Communist Party'}) x
-CREATE (:Party {name: 'Fis Nua'})
-CREATE (:Party {name: 'Catholic Democrats'})
+CREATE (:Party {name: 'Fis Nua'}) x
+CREATE (:Party {name: 'Catholic Democrats'}) x
 
 #######################People + IS_IN PARTY + RAN_IN##################################################
 ----SAMPLE TO CREATE A PERSON AND CREATE A RELATIONSHIP OF IS_IN SOME PARTY + WHERE THEY RAN_IN
 	WILL USE THIS AS TEMPLATE FOR THE REST OF CANDIDATES---------------
 
-CREATE (:Person {name: 'Michael ODonnell'})
+CREATE (:Person {name: 'Michael ODonnell'}) --- CREATE a Person
 
 Match (n:Person), (p:Party)
 where n.name = 'Michael ODonnell' and p.name = 'Communist Party'
-CREATE n-[:IS_IN]->p;
+CREATE n-[:IS_IN]->p; ----- CREATE IS_IN relationship
 
 MATCH (n:Person {name: 'Michael ODonnell'})
 OPTIONAL MATCH (c:Constituency {county: 'Cork North West'})
-CREATE n-[:RAN_IN]->c
+CREATE n-[:RAN_IN]->c ------ CREATE RAN_IN relationship
+
+MATCH (n:Person)-[:IS_IN]->(p:Party {name: 'Catholic Democrats'}) RETURN n,p
+
+##################match person , party , constituency#############################
 
 MATCH (n:Person {name: 'Michael ODonnell'})
 OPTIONAL MATCH (p:Party {name: 'Communist Party'})
 OPTIONAL MATCH (c:Constituency {county: 'Cork North West'})
+RETURN n,p,c
+
+MATCH (p:Party {name: 'Fis Nua'})
+OPTIONAL MATCH (n:Person)-[:IS_IN]->(p:Party)
+OPTIONAL MATCH (n:Person)-[:RAN_IN]->(c:Constituency)
 RETURN n,p,c
