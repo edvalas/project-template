@@ -50,7 +50,7 @@ CREATE (:Party {name: 'Anti Austerity'}) x
 CREATE (:Party {name: 'Renua Ireland'}) x
 CREATE (:Party {name: 'Social Democrats'}) x
 CREATE (:Party {name: 'WUAG'}) x
-CREATE (:Party {name: 'Independents'})
+CREATE (:Party {name: 'Independents'}) x
 
 CREATE (:Party {name: 'Green Party'}) x
 CREATE (:Party {name: 'Irish Democratic Party'}) x
@@ -68,7 +68,7 @@ CREATE (:Party {name: 'Catholic Democrats'}) x
 CREATE (:Person {name: 'Michael ODonnell'}) --- CREATE a Person
 
 Match (n:Person), (p:Party)
-where n.name = 'Seamus MacDonagh' and p.name = 'Labour'
+where n.name = 'Seamus MacDonagh' and p.name = 'Independents'
 OPTIONAL MATCH (c:Constituency {name: 'Meath East'})
 CREATE n-[:IS_IN]->p
 CREATE n-[:RAN_IN]->c ---- adds both relationships to a person
