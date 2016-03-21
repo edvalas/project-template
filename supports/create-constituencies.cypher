@@ -44,7 +44,7 @@ CREATE (:Constituency {county:'Wicklow', population:'141,012', seats:'5'})
 
 CREATE (:Party {name: 'Fine Gael'}) x
 CREATE (:Party {name: 'Labour'}) x
-CREATE (:Party {name: 'Fianna Fail'})
+CREATE (:Party {name: 'Fianna Fail'}) x
 CREATE (:Party {name: 'Sinn Fein'})
 CREATE (:Party {name: 'Anti Austerity'}) x
 CREATE (:Party {name: 'Renua Ireland'}) x
@@ -73,7 +73,14 @@ OPTIONAL MATCH (c:Constituency {name: 'Meath East'})
 CREATE n-[:IS_IN]->p
 CREATE n-[:RAN_IN]->c ---- adds both relationships to a person
 
-MATCH (n:Person)-[:IS_IN]->(p:Party {name: 'Catholic Democrats'}) RETURN n,p
+match (n:Person) where n.name = 'Mike Durkan'
+Optional match (n:Person)-[:IS_IN]->(p:Party)
+return n,p
+
+----------Check for nodes who are not in a party-----
+MATCH (Person) 
+WHERE NOT (Person)-[:IS_IN]-()
+RETURN Person
 
 ##################match person , party , constituency#############################
 
