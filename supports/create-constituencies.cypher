@@ -43,7 +43,7 @@ CREATE (:Constituency {county:'Wicklow', population:'141,012', seats:'5'})
 ##################################Parties########################################
 
 CREATE (:Party {name: 'Fine Gael'}) x
-CREATE (:Party {name: 'Labour'})
+CREATE (:Party {name: 'Labour'}) x
 CREATE (:Party {name: 'Fianna Fail'})
 CREATE (:Party {name: 'Sinn Fein'})
 CREATE (:Party {name: 'Anti Austerity'}) x
@@ -68,7 +68,7 @@ CREATE (:Party {name: 'Catholic Democrats'}) x
 CREATE (:Person {name: 'Michael ODonnell'}) --- CREATE a Person
 
 Match (n:Person), (p:Party)
-where n.name = 'Seamus MacDonagh' and p.name = 'Renua Ireland'
+where n.name = 'Seamus MacDonagh' and p.name = 'Labour'
 OPTIONAL MATCH (c:Constituency {name: 'Meath East'})
 CREATE n-[:IS_IN]->p
 CREATE n-[:RAN_IN]->c ---- adds both relationships to a person
