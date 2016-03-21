@@ -45,7 +45,7 @@ CREATE (:Constituency {county:'Wicklow', population:'141,012', seats:'5'})
 CREATE (:Party {name: 'Fine Gael'}) x
 CREATE (:Party {name: 'Labour'}) x
 CREATE (:Party {name: 'Fianna Fail'}) x
-CREATE (:Party {name: 'Sinn Fein'})
+CREATE (:Party {name: 'Sinn Fein'}) x
 CREATE (:Party {name: 'Anti Austerity'}) x
 CREATE (:Party {name: 'Renua Ireland'}) x
 CREATE (:Party {name: 'Social Democrats'}) x
