@@ -77,4 +77,4 @@ RETURN
 
 ## References
 1. [Neo4J website](http://neo4j.com/), the website of the Neo4j database and docs for creating, deleting matching nodes and some built in functions.
-2. [Finding a node with most relationships] (https://groups.google.com/forum/#!topic/neo4j/lPo7F3o9ijE)
+2. [Finding a node with most relationships] (https://groups.google.com/forum/#!topic/neo4j/lPo7F3o9ijE) , [Neo4J Start Reading Clause] (http://neo4j.com/docs/stable/query-start.html)
