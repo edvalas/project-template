@@ -24,6 +24,23 @@ The database contains 2 types of relationships:
 		
 		2. [:RAN_IN] - relationship describing a person [:RAN_IN] some constituency.
 
+		
+Some Cypher code used to create the database:
+
+```cypher
+	CREATE (:Constituency {name:'Carlow Kilkenny', population:'145,659', seats:'5'}) // creates a constituency with name, population and seats
+	
+	CREATE (:Party {name: 'Fine Gael'}) // creates a party with a name
+	
+	CREATE (:Person {name: 'Michael ODonnell'}) // creates a person with a name
+	
+	Match (n:Person), (p:Party) // we want to match a person and a party
+	WHERE n.name = 'Seamus MacDonagh' and p.name = 'Independents' //where names of both equal something
+	OPTIONAL MATCH (c:Constituency {name: 'Meath East'}) // match a constituency as well
+	CREATE n-[:IS_IN]->p // create relationship person is in a party
+	CREATE n-[:RAN_IN]->c // create relationship person ran in some constituency
+```
+
 ## Queries
 Summarise your three queries here.
 Then explain them one by one in the following sections.
