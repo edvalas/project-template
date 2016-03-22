@@ -10,15 +10,18 @@ matching and displaying queries and one query to check is there are odd nodes wi
 found in the supports folder in the create-constituencies.cypher file.
 
 The database contains nodes of type: 
-		Constituency - The county or a part of the county which people ran in like Wicklow, Galway West/East. Contains Name of the constituency,
-		population and number of seats in that constituency.
+
+		Constituency - The county or a part of the county which people ran in like Wicklow, Galway West/East.
+		Contains Name of the constituency, population and number of seats in that constituency.
 		
 		Person - Is a political candidate node. Contains name of the candidate.
 		
 		Party - Political party which has candidates representing the party. Contains name of the party.
 
 The database contains 2 types of relationships:
+
 		1. [:IS_IN] - relationship describing a person [:IS_IN] some party.
+		
 		2. [:RAN_IN] - relationship describing a person [:RAN_IN] some constituency.
 
 ## Queries
@@ -53,4 +56,7 @@ RETURN
 ```
 
 ## References
+
+Used docs of Cypher Query language for matching, creating and deleting queries.
+
 1. [Neo4J website](http://neo4j.com/), the website of the Neo4j database.
