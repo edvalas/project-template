@@ -48,6 +48,8 @@ But the Query can easily be changed to find Shortest Path between any other node
 My second Query looks at finding the top 5 Constituencies which had the most people run in them.
 From Neo4J docs I was looking at 'Start' Reading Clause to search and also have referenced a blog at References below.
 
+My third Query looks at finding all of the people and their parties who ran in the Constituencies Galway West and Galway East.
+
 #### Shortest Path between 2 people.
 This query retreives the Shortest Path between 2 people
 ```cypher
@@ -66,13 +68,16 @@ This query shows top 5 Constituencies which most people running in them.
 	limit 5
 ```
 
-#### Query three title
-This query retreives the Bacon number of an actor...
+#### All people who ran in county Galway
+This query shows all the people and their parties who ran in the Constituencies Galway East and West
 ```cypher
-MATCH
-	(Bacon)
-RETURN
-	Bacon;
+	match (c:Constituency) where c.name = 'Galway West' // matches Constituency Galway West
+	Optional match (n:Person)-[:RAN_IN]->(c:Constituency) // match all the people who ran in Galway West
+	Optional match (n:Person)-[:IS_IN]->(p:Party) // match the peoples parties
+	Optional match (v:Constituency) where v.name = 'Galway East' // matches Constituency Galway East
+	Optional match (m:Person)-[:RAN_IN]->(v:Constituency) // match all the people who ran in Galway East
+	Optional match (m:Person)-[:IS_IN]->(o:Party) // match the peoples parties
+	return c,n,p,v,m,o
 ```
 
 ## References
