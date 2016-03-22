@@ -45,6 +45,8 @@ Some Cypher code used to create the database:
 My first Query looks at Shortest Path between 2 of any kind of nodes. In the example I used 2 people from 2 different parties.
 But the Query can easily be changed to find Shortest Path between any other nodes.
 
+My second Query looks at finding the top 5 Constituencies which had the most people run in them.
+From Neo4J docs I was looking at 'Start' Reading Clause to search and also have referenced a blog at References below.
 
 #### Shortest Path between 2 people.
 This query retreives the Shortest Path between 2 people
@@ -54,13 +56,14 @@ This query retreives the Shortest Path between 2 people
 	RETURN p
 ```
 
-#### Query two title
-This query retreives the Bacon number of an actor...
+#### Top 5 Constituencies with most people who ran in them.
+This query shows top 5 Constituencies which most people running in them.
 ```cypher
-MATCH
-	(Bacon)
-RETURN
-	Bacon;
+	start n=node(*) // I want to start at n node
+	WHERE (n:Constituency) // of type Constituency
+	return n, length(n--()) as ranin // count the number of relationships n has, works as Constituencies only have [:RAN_IN] relationship
+	order by ranin desc // order by the number of relationships 'ranin' descending limit to 5
+	limit 5
 ```
 
 #### Query three title
@@ -74,3 +77,4 @@ RETURN
 
 ## References
 1. [Neo4J website](http://neo4j.com/), the website of the Neo4j database and docs for creating, deleting matching nodes and some built in functions.
+2. [Finding a node with most relationships] (https://groups.google.com/forum/#!topic/neo4j/lPo7F3o9ijE)
