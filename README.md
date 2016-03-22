@@ -42,16 +42,16 @@ Some Cypher code used to create the database:
 ```
 
 ## Queries
-Summarise your three queries here.
-Then explain them one by one in the following sections.
+My first Query looks at Shortest Path between 2 of any kind of nodes. In the example I used 2 people from 2 different parties.
+But the Query can easily be changed to find Shortest Path between any other nodes.
 
-#### Query one title
-This query retreives the Bacon number of an actor...
+
+#### Shortest Path between 2 people.
+This query retreives the Shortest Path between 2 people
 ```cypher
-MATCH
-	(Bacon)
-RETURN
-	Bacon;
+	MATCH (c:Person {name: 'Seamus Healy'}), (v:Person {name: 'Michael ODonnell'}), // I match 2 people by name
+	p = shortestPath((c)-[*..15]-(v)) // create p - shortestPath that could have a max of 15 nodes in between the 2 people
+	RETURN p
 ```
 
 #### Query two title
@@ -73,4 +73,4 @@ RETURN
 ```
 
 ## References
-1. [Neo4J website](http://neo4j.com/), the website of the Neo4j database.
+1. [Neo4J website](http://neo4j.com/), the website of the Neo4j database and docs for creating, deleting matching nodes and some built in functions.
