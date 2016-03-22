@@ -56,7 +56,4 @@ RETURN
 ```
 
 ## References
-
-Used docs of Cypher Query language for matching, creating and deleting queries.
-
 1. [Neo4J website](http://neo4j.com/), the website of the Neo4j database.
