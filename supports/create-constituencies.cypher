@@ -1,4 +1,7 @@
-#########################Constituencies##############################################
+#########################  Constituencies  ##############################################
+
+					Queries to create Constituencies
+
 CREATE (:Constituency {county:'Carlow Kilkenny', population:'145,659', seats:'5'})
 CREATE (:Constituency {county:'Cavan Monaghan', population:'120,483', seats:'4'})
 CREATE (:Constituency {county:'Clare', population:'111,336', seats:'4'})
@@ -40,28 +43,31 @@ CREATE (:Constituency {county:'Waterford', population:'113,795', seats:'4'})
 CREATE (:Constituency {county:'Wexford', population:'145,320', seats:'5'})
 CREATE (:Constituency {county:'Wicklow', population:'141,012', seats:'5'})
 
-##################################Parties########################################
+##################################  Parties  ########################################
 
-CREATE (:Party {name: 'Fine Gael'}) x
-CREATE (:Party {name: 'Labour'}) x
-CREATE (:Party {name: 'Fianna Fail'}) x
-CREATE (:Party {name: 'Sinn Fein'}) x
-CREATE (:Party {name: 'Anti Austerity'}) x
-CREATE (:Party {name: 'Renua Ireland'}) x
-CREATE (:Party {name: 'Social Democrats'}) x
-CREATE (:Party {name: 'WUAG'}) x
-CREATE (:Party {name: 'Independents'}) x
+					Queries to create Parties
 
-CREATE (:Party {name: 'Green Party'}) x
-CREATE (:Party {name: 'Irish Democratic Party'}) x
-CREATE (:Party {name: 'Workers Party'}) x
-CREATE (:Party {name: 'Direct Democracy'}) x
-CREATE (:Party {name: 'Peoples Convention'}) x
-CREATE (:Party {name: 'Communist Party'}) x
-CREATE (:Party {name: 'Fis Nua'}) x
-CREATE (:Party {name: 'Catholic Democrats'}) x
+CREATE (:Party {name: 'Fine Gael'}) 
+CREATE (:Party {name: 'Labour'}) 
+CREATE (:Party {name: 'Fianna Fail'}) 
+CREATE (:Party {name: 'Sinn Fein'}) 
+CREATE (:Party {name: 'Anti Austerity'}) 
+CREATE (:Party {name: 'Renua Ireland'}) 
+CREATE (:Party {name: 'Social Democrats'}) 
+CREATE (:Party {name: 'WUAG'}) 
+CREATE (:Party {name: 'Independents'}) 
 
-#######################People + IS_IN PARTY + RAN_IN##################################################
+CREATE (:Party {name: 'Green Party'}) 
+CREATE (:Party {name: 'Irish Democratic Party'}) 
+CREATE (:Party {name: 'Workers Party'}) 
+CREATE (:Party {name: 'Direct Democracy'}) 
+CREATE (:Party {name: 'Peoples Convention'}) 
+CREATE (:Party {name: 'Communist Party'}) 
+CREATE (:Party {name: 'Fis Nua'}) 
+CREATE (:Party {name: 'Catholic Democrats'}) 
+
+#######################  People + IS_IN PARTY + RAN_IN  ##################################################
+
 ----SAMPLE TO CREATE A PERSON AND CREATE A RELATIONSHIP OF IS_IN SOME PARTY + WHERE THEY RAN_IN
 	WILL USE THIS AS TEMPLATE FOR THE REST OF CANDIDATES---------------
 
@@ -71,25 +77,26 @@ Match (n:Person), (p:Party)
 where n.name = 'Seamus MacDonagh' and p.name = 'Independents'
 OPTIONAL MATCH (c:Constituency {name: 'Meath East'})
 CREATE n-[:IS_IN]->p
-CREATE n-[:RAN_IN]->c ---- adds both relationships to a person
+CREATE n-[:RAN_IN]->c ---- matches a person,party and constituency, adds both relationships to a person :IS_IN + :RAN_IN
 
 match (n:Person) where n.name = 'Mike Durkan'
 Optional match (n:Person)-[:IS_IN]->(p:Party)
-return n,p
+return n,p   ---- matches a person and shows the party the person is in
 
-----------Check for nodes who are not in a party-----
+----------Check for nodes who are not in a party---------
+
 MATCH (Person) 
 WHERE NOT (Person)-[:IS_IN]-()
-RETURN Person
+RETURN Person ---- error checking query to see if there are people outstanding who are not in a party
 
-##################match person , party , constituency#############################
+##################  match person , party , constituency  #############################
 
 MATCH (n:Person {name: 'Michael ODonnell'})
 OPTIONAL MATCH (p:Party {name: 'Communist Party'})
 OPTIONAL MATCH (c:Constituency {name: 'Cork North West'})
-RETURN n,p,c
+RETURN n,p,c  ---- matches person,party,constituency and displays them
 
 MATCH (p:Party {name: 'Fis Nua'})
 OPTIONAL MATCH (n:Person)-[:IS_IN]->(p:Party)
 OPTIONAL MATCH (n:Person)-[:RAN_IN]->(c:Constituency)
-RETURN n,p,c
+RETURN n,p,c ---- matches a party and shows people who are in it and what constituencies they ran in
